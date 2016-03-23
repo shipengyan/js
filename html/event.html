@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">click me</button>
+<script>
+    var btnEl = document.querySelector('#btn');
+
+    //    btnEl.addEventListener('click', function () {
+    //        console.log('useCapture:true');
+    //    }, true);
+
+    btnEl.addEventListener('click', function () {
+        console.log('useCapture:false');
+    }, false);
+
+    //    btnEl.addEventListener('click', function () {
+    //        console.log('useCapture:false 2');
+    //    }, false);
+
+    btnEl.addEventListener('click', function () {
+        console.log('useCapture:true 2');
+    }, true);
+
+    var a = {
+        handleEvent: function (e) {
+            console.log('handleEvent', e.type);
+        }
+    };
+
+    btnEl.addEventListener('click', a, false); //IE9+
+
+</script>
+</body>
+</html>

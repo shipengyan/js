@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="btn">下载Blob对象中内容</button>
+
+<script src="common.js"></script>
+<script>
+    var blob = new Blob(['this a txt file'], {type: 'text/plain'});
+    console.log(blob);
+
+    //唱a标签一起用来下载文件
+    document.querySelector('#btn').addEventListener('click', function (e) {
+        download('blobData.txt', e)
+    }, false);
+
+    var a;
+    function download(filename, e) {
+        if (browser.isIE()) {
+            navigator.msSaveBlob(blob, 'msSaveBlob_testFile.txt');
+        } else {
+            a = a || document.createElement('a');
+            a.download = filename;
+            a.href = URL.createObjectURL(blob);
+            document.body.appendChild(a);
+
+            a.click();
+//            var evt = document.createEvent('HTMLEvents');
+//            evt.initEvent('click');
+//            a.dispatchEvent(evt);
+        }
+    }
+
+</script>
+</body>
+</html>

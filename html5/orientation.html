@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>screen:<span class="screen"></span></div>
+<div>orientation:<span class="orientation"></span></div>
+
+<script type="text/javascript">
+
+    function init() {
+        alert('init');
+        var orientationEl = document.querySelector('.orientation');
+        var screenEl = document.querySelector('.screen');
+
+        setOrientation();
+        setScreen();
+
+        function setOrientation() {
+            //向左90，向右-90，水平0
+            orientationEl.innerHTML = window.orientation;
+            alert(window.orientation);
+        }
+
+        window.addEventListener('orientationchange', updateOrientationHandler, false);
+
+        function updateOrientationHandler(e) {
+            setOrientation();
+        }
+
+        function setScreen() {
+            // android4.2 不支持
+            var orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
+            alert(orientation);
+            if (orientation) {
+                var text;
+
+                switch (orientation.type) {
+                    case 'landscape-primary':
+                        text = 'That looks good.';
+                        break;
+                    case 'landscape-secondary':
+                        text = 'Mmmh... the screen is upside down!';
+                        break;
+                    case 'portrait-secondary':
+                    case 'portrait-primary':
+                        text = 'Mmmh... you should rotate your device to landscape';
+                        break;
+                }
+                screenEl.innerHTML = text;
+            }
+        }
+    }
+
+
+    window.addEventListener('DOMContentLoaded', init, false);
+
+</script>
+</body>
+</html>

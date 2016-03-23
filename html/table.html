@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+</head>
+<body>
+<table id="table">
+    <thead>
+    <tr>
+        <th>header1</th>
+        <th>header2</th>
+        <th>header3</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr id="100">
+        <td>Lime</td>
+        <td>Lemon</td>
+        <td>Orange</td>
+    </tr>
+    <tr id="100s">
+        <td>Green</td>
+        <td>Yellow</td>
+        <td>Orange</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr id="footer">
+        <td>foot1</td>
+        <td>foot2</td>
+        <td>foot3</td>
+    </tr>
+    </tfoot>
+</table>
+
+<script>
+    var table = document.querySelector('#table');
+    var rows = table.rows;
+    console.log('rows', rows);
+    console.log('rows.namedItem("100s")', rows.namedItem('100s'));
+
+    console.log('rows.item(1)', rows.item(1));
+</script>
+
+</body>
+</html>

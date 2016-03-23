@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据绑定-Object.defineProperty</title>
+</head>
+<body s-app>
+
+Model:<span s-model=""></span>
+<hr/>
+View:<input type="input" s-value="123" s-bind="userName">, <span s-text="你好" s-bind="userName"></span>
+
+<script>
+
+
+    function searchDirective(rootNode) {
+        for (var i = 0; i < rootNode.children.length; i++) {
+            var el = rootNode.children.item(i);
+
+
+            for (var j = 0; j < el.attributes.length; j++) {
+                var attr = el.attributes[j];
+                if (attr.nodeName.indexOf('s-') === 0) {
+                    switch (el.tagName) {
+                        case 'INPUT':
+                            el.value = attr.nodeValue;
+                            break;
+                        case 'DIV':
+                        case 'SPAN':
+                            el.innerHTML = attr.nodeValue;
+                            break;
+                    }
+
+                    break; //暂时只支持一个指令
+                }
+            }
+        }
+    }
+
+    function objectSetAndGet(obj, prop) {
+        Object.defineProperty(obj, prop, {
+            get: function () {
+                //拦截
+                return obj[prop];
+            },
+            set: function (value) {
+                obj.prop = value;
+                searchDirective(app);
+            }
+        })
+    }
+
+
+    var app = document.querySelector('[s-app]');
+
+    if (!app) {
+        console.error('没有找到s-app属性，无法启用数据绑定');
+    }
+    searchDirective(app);
+
+
+    var model = {userName: 'cc', age: 12};
+
+
+</script>
+
+</body>
+</html>

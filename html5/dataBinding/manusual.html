@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双向绑定- 手动绑定</title>
+</head>
+<body>
+
+<hr/>
+Model :<span class="model"></span>
+<hr/>
+View:
+输入用户名：<input type="input" class="userName" data-bind="userName">
+您输入的用户姓名是：<span class="userName" data-bind="userName"></span>
+
+<br/>
+<button class="btn-destroy">销毁绑定</button>
+
+
+<script>
+    var mvvm = function (selector, model) {
+        this.selector = selector;
+        this.model = model;
+        this.init();
+    };
+
+    mvvm.prototype.init = function () {
+        var self = this;
+        this.el = document.querySelectorAll(this.selector);
+
+        //Model --> DOM
+        this.observeHandler = function (changes) {
+            changes.forEach(function (change) {
+                self.render();
+            });
+        };
+        Object.observe(this.model, this.observeHandler);
+
+        //DOM --> Model
+        for (var i = 0; i < this.el.length; i++) {
+            var el = this.el[i], bindAttr = el.dataset.bind;
+
+            switch (el.tagName) {
+                case 'INPUT':
+                    el.value = this.model[bindAttr];
+                    el.addEventListener('keyup', function (e) {
+                        console.log('DOM --> Model');
+//                        self.model[bindAttr] = el.value;
+                        self.model[bindAttr] = e.target.value;
+
+                    }, false);
+                    break;
+
+                default:
+                    el.innerHTML = this.model[bindAttr];
+                    break;
+            }
+        }
+    };
+
+    mvvm.prototype.render = function () {
+
+        for (var i = 0; i < this.el.length; i++) {
+            var el = this.el[i], bindAttr = el.dataset.bind;
+            switch (el.tagName) {
+                case 'INPUT':
+                    if (el.value !== this.model[bindAttr]) {//防止重复渲染
+                        console.log('Model --> DOM');
+                        el.value = this.model[bindAttr];
+                    }
+                    break;
+                case 'DIV':
+                case 'SPAN':
+                    console.log('Model --> DOM');
+                    el.innerHTML = this.model[bindAttr];
+                    break;
+            }
+        }
+
+    };
+
+
+    mvvm.prototype.destroy = function () {
+        Object.unobserve(this.model, this.observeHandler);
+        for (var i = 0; i < this.el.length; i++) {
+            var el = this.el[i];
+            switch (el.tagName) {
+                case 'INPUT':
+                case 'TEXTAREA':
+                    el.removeEventListener('change');
+                    break;
+                default:
+                    break;
+            }
+        }
+
+    };
+
+
+    var user = {userName: 'cc', age: 12};
+    var app = new mvvm('.userName', user);
+
+
+    document.querySelector('.model').innerHTML = JSON.stringify(user);
+
+    var btnDestroyEl = document.querySelector('.btn-destroy');
+    btnDestroyEl.addEventListener('click', function () {
+        if (app) {
+            app.destroy();
+            app = null;
+        }
+    }, false)
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+CACHE MANIFEST
+
+#CACHE MANIFEST必须是第一行
+# manifest文件被修改后都会重新请求，所以用version来控制版本号
+
+# v1 - 2015-08-13
+# This is a comment.
+CACHE:
+assets/user.json
+assets/1.png
+videoPerFrame.html
+
+
+# 默认都是要从服务器上请求的，正常情况下就写成*
+NETWORK:
+*
+
+FALLBACK:
+404.html
+

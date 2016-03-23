@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="btn1" class="btn">Button</button>
+
+<script>
+    //旧浏览器matchesSelector
+    var btn = document.querySelector('#btn1');
+    console.log(btn.matches('button')); //true
+    console.log(btn.matches('#btn1')); //true
+    console.log(btn.matches('.btn')); //true
+</script>
+</body>
+</html>

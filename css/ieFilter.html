@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #a {
+            height: 40px;
+            border: 1px solid blue;
+            /*IE 7,8,9支持以下写法*/
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='red', endColorstr='#e8f2f8');
+        }
+
+        #a.nofilter {
+            filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+        }
+    </style>
+
+</head>
+<body>
+<div id="a">afa</div>
+<button id="btn1">去掉filter</button>
+
+<script>
+    var btn = document.getElementById('btn1');
+
+    btn.attachEvent('onclick', function () {
+        var a = document.getElementById('a');
+        a.className = 'nofilter';
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>return Function</title>
+</head>
+<body>
+<script>
+
+    //return function的作用
+    //在调用时创建return function
+    function getCounter() {
+        //下面一个函数的私有变量
+        var count = 0;
+        return function () {
+            return ++count;
+        };
+    }
+
+    var counter1 = getCounter(), counter2 = getCounter();
+
+    console.log(counter1()); // 1
+    console.log(counter1()); // 2
+    console.log(counter2()); // 1
+    console.log(counter2()); // 2
+    console.log(counter1()); // 3
+    console.log(counter2()); // 3
+
+</script>
+
+</body>
+</html>

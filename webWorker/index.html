@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Worder</title>
+</head>
+<body>
+
+<button onclick="sendMsg()">Send Msg</button>
+
+<script>
+    //// js多线程
+    if (!window.Worker) {
+        console.error('不支持worker');
+    }
+
+    var worker = new Worker('worker.js');
+    worker.addEventListener('message', function (event) {
+        console.log('html page receive message:', event.data);
+    }, false);
+
+
+    function sendMsg() {
+        worker.postMessage({userId: 1000});
+    }
+
+
+</script>
+
+</body>
+</html>

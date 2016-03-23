@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object.observe Object.unobserve</title>
+</head>
+<body>
+<script>
+    var obj = {};
+
+    Object.observe(obj, function (changes) {
+        console.log(JSON.stringify(changes));
+    });
+
+    relay(function () {
+        obj.name = 'cc';
+    });
+    relay(function () {
+        obj.name = 'dd';
+    });
+    relay(function () {
+        obj.age = 12;
+    });
+    relay(function () {
+        delete  obj.age;
+    });
+
+    relay(function(){
+        Object.seal(obj);//密封Obj，禁止写入新的属性
+    });
+
+    function relay(fn) {
+        setTimeout(fn, 1000);
+    }
+
+</script>
+
+
+</body>
+</html>

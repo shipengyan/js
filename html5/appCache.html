@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" manifest="spy.appcache">
+<head>
+    <meta charset="UTF-8">
+    <title>Application Cache</title>
+    <script src="common.js"></script>
+</head>
+<body>
+<div class="container"></div>
+<button id="btn">添加一张图片</button>
+<!--直接从cache中读取文件-->
+<script>
+    var btnEl = $('#btn'), containerEl = $('.container');
+    btnEl.addEventListener('click', function () {
+        var imgEl = document.createElement('img');
+        imgEl.src = 'assets/1.png';
+        containerEl.appendChild(imgEl);
+    });
+
+    console.log(window.applicationCache.status);
+    initAppCacheEvent('uncached', function (e) {
+        console.log('uncached', e);
+    });
+    initAppCacheEvent('idle', function (e) {
+        console.log('idle', e);
+    });
+    initAppCacheEvent('checking', function (e) {
+        console.log('checking', e);
+
+    });
+    initAppCacheEvent('downloading', function (e) {
+        console.log('downloading', e);
+
+    });
+    initAppCacheEvent('updateready', function (e) {
+        console.log('updateready', e);
+
+        if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+            // Browser downloaded a new app cache.
+            // Swap it in and reload the page to get the new hotness.
+            window.applicationCache.swapCache();
+            if (confirm('A new version of this site is available. Load it?')) {
+                window.location.reload();
+            }
+        } else {
+            // Manifest didn't changed. Nothing new to server.
+        }
+    });
+    initAppCacheEvent('obsolete', function (e) {
+        console.log('obsolete', e);
+    });
+
+    function initAppCacheEvent(event, handler) {
+        window.applicationCache.addEventListener(event, handler);
+    }
+
+//    window.applicationCache.update();
+</script>
+
+
+</body>
+</html>

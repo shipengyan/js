@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    if (!window.BlobBuilder) {
+        console.log('浏览器不支持BlobBuilder');
+    } else {
+        var builder = new BlobBuilder();
+        builder.append('asdf');
+        var blob = builder.getBlob('text/plain');
+        console.log(blob);
+    }
+
+</script>
+</body>
+</html>

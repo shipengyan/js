@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>requestIdleCallback</title>
+</head>
+<body id="body">
+
+
+<script>
+    // js多线程
+    //cancelIdleCallback
+    //requestIdleCallback与webworker的区别，webworker不能访问和操作DOM，而requestIdleCallback可以
+    if (window.requestIdleCallback) {
+        requestIdleCallback(function (deadline) {
+
+            console.log(deadline.timeRemaining());
+            console.log('didTimeout', deadline.didTimeout);
+
+            var body = document.getElementById('body');
+            body.style.backgroundColor = 'red';
+
+            console.log('requestIdleCallback end');
+        });
+    } else {
+        console.log('not support requestIdleCallback');
+    }
+
+
+</script>
+
+</body>
+</html>

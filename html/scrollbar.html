@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+获取scrollbar垂直滚动条宽度，先在overflow下计算，然后在scroll下计算
+
+
+<script>
+    function getScrollBarWidth() {
+        var beforeWidth, afterWidth, div = document.createElement('div');
+        div.style.cssText = 'position:absolute;left:0;top:-100px;height:100px;width:100px;overflow:hidden';
+        document.body.appendChild(div);
+        beforeWidth = div.clientWidth;
+
+        div.style.overflowY = 'scroll';
+        afterWidth = div.clientWidth;
+
+        document.body.removeChild(div);
+        return beforeWidth - afterWidth;
+    }
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log(getScrollBarWidth());
+    })
+</script>
+</body>
+</html>

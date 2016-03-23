@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0;">
+    <title>横竖屏切换检测</title>
+    <style type="text/css">
+        .landscape body {
+            background-color: #ff0000;
+        }
+
+        .portrait body {
+            background-color: #00ffff;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    (function () {
+        var init = function () {
+            var updateOrientation = function () {
+                var orientation = window.orientation;
+                switch (orientation) {
+                    case 90:
+                    case -90:
+                        orientation = "landscape";
+                        break;
+                    default:
+                        orientation = "portrait";
+                        break;
+                }
+                document.body.parentNode.setAttribute("class", orientation);
+            };
+
+            window.addEventListener("orientationchange", updateOrientation, false);
+            updateOrientation();
+        };
+        window.addEventListener("DOMContentLoaded", init, false);
+    })();
+</script>
+</body>
+</html>

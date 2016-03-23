@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+出现scrollbar不能触发resize事件
+
+<button id="btn">添加滚动条</button>
+<script>
+    window.addEventListener('resize', function () {
+        console.log('window resize');
+    });
+
+    var btn = $('#btn');
+
+    btn.addEventListener('click', function () {
+        var bodyEl = $('body');
+        bodyEl.style.height = '1000px';
+    });
+
+
+    function $(selector) {
+        return document.querySelector(selector)
+    }
+
+
+</script>
+
+</body>
+</html>

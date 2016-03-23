@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="../frm/amdlite.js"></script>
+
+<script>
+    define('beta', {
+        verb: function () {
+            console.log('verb');
+        }
+    });
+
+    define("alpha", ["require", "exports", "beta"], function (require, exports, beta) {
+        exports.verb = function () {
+            return beta.verb();
+            //Or:
+            return require("beta").verb();
+        }
+    });
+</script>
+</body>
+</html>

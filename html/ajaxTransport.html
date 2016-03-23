@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ajaxTransport
+<div id="container"></div>
+
+
+<script src="frm/jquery-1.10.2.js"></script>
+<script src="frm/jquery.iframe-transport.js"></script>
+<script>
+    $.ajaxPrefilter(function (options) {
+        console.log('my ajaxPrefilter');
+        
+        if (options.dataType === 'image') {
+            options.type = 'get';
+        }
+    });
+
+
+    $.ajaxTransport("image", function (s) {
+        if (s.type === "GET" && s.async) {
+            var image;
+            return {
+                send: function (_, callback) {
+                    image = new Image();
+                    function done(status) {
+                        if (image) {
+                            var statusText = ( status == 200 ) ? "success" : "error",
+                                tmp = image;
+                            image = image.onreadystatechange = image.onerror = image.onload = null;
+                            callback(status, statusText, {image: tmp});
+                        }
+                    }
+
+                    image.onreadystatechange = image.onload = function () {
+                        done(200);
+                    };
+                    image.onerror = function () {
+                        done(404);
+                    };
+
+                    image.src = s.url;
+                },
+
+                abort: function () {
+                    if (image) {
+                        image = image.onreadystatechange = image.onerror = image.onload = null;
+                    }
+                }
+            };
+        }
+    });
+
+    var $container = $('#container');
+    var $iframe = $('<iframe/>').attr('src', 'iframe.html');
+
+
+    $container.append($iframe);
+
+    $.ajax({
+        url: '1.jpg',
+        type: 'get',
+        dataType: 'image'
+    }).done(function () {
+        console.log(arguments);
+    });
+
+    //    $container.append('<img src="1.jpg"/>');
+
+
+</script>
+
+</body>
+</html>

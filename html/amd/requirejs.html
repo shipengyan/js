@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="../frm/require.js"></script>
+<script>
+
+    //    define('main', ['./a', './b'], function (a, b) {
+    //        console.log(a);
+    //        console.log(b);
+    //    });
+
+    define('a', function () {
+        console.log('a');
+    });
+    define(function (require, exports, module) {
+        //the require in here is a local require.
+//        require('a');
+    });
+    define('main', function () {
+//        require('b');
+        console.log('main');
+    });
+
+    require(['main']);
+</script>
+</body>
+</html>

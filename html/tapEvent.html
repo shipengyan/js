@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tap Event</title>
+    <style>
+        .div1, .div2 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 200px;
+        }
+
+        .div1 {
+            width: 300px;
+            background-color: blue;
+        }
+
+        .div2 {
+            width: 200px;
+            background-color: red;
+        }
+
+        .result {
+            position: absolute;
+            left: 0;
+            top: 200px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="div1">&nbsp;</div>
+<div class="div2">&nbsp;</div>
+
+<textarea class="result" rows="10"></textarea>
+<script src="frm/zepto/zepto.js"></script>
+
+<script>
+    $(function () {
+        var $result = $('.result');
+
+
+        $('.div1').on('click', function () {
+            log('div1 click');
+
+        }).on('tap', function () {
+            log('div1 tap');
+        });
+
+        $('.div2').on('click', function () {
+            log('div2 click');
+
+        }).on('tap', function () {
+            log('div2 tap');
+        });
+
+
+        function log(str) {
+            $result.val(($result.val() || '') + '\r\n' + str);
+        }
+    });
+
+</script>
+
+</body>
+</html>

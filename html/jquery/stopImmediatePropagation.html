@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>stopImmediatePropagation</title>
+    <style>
+        .a, .a1 {
+            height: 100px;
+            background-color: #00ffff;
+        }
+
+        .b, .b1 {
+            height: 100px;
+            background-color: #cccccc;
+        }
+    </style>
+
+</head>
+<body>
+
+<div>
+    <h1>event.stopPropagation()</h1>
+    <div class="a"> a</div>
+    <div class="b"> b</div>
+</div>
+
+<div>
+    <h1>event.stopImmediatePropagation()</h1>
+    <div class="a1"> a</div>
+    <div class="b1"> b</div>
+</div>
+<script src="../frm/jquery-1.10.2.js"></script>
+
+<script>
+    $('.a,.b').on('click', function (e) {
+        console.log('stopPropagation', 'first');
+        e.stopPropagation();
+    }).on('click', function (e) {
+        console.log('stopPropagation', 'second');
+    });
+
+    $('.a1,.b1')
+        .on('click', function (e) {
+            console.log('stopImmediatePropagation', 'first');
+            e.stopImmediatePropagation();
+        }).on('click', function (e) {
+        console.log('stopImmediatePropagation', 'second');
+    });
+
+</script>
+
+</body>
+</html>

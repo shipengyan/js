@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #set-height {
+            display: block;
+            height: 13500px;
+        }
+
+        #v0 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="set-height"></div>
+<video id="v0">
+    <!--这里只能用 http url，难道是webstorm 服务器不支持流??-->
+    <source type="audio/webm" src="http://www.html5rocks.com/tutorials/video/basics/Chrome_ImF.webm"/>
+    <source type="video/mp4" src="assets/Chrome_ImF.mp4"/>
+    Your browser does not support HTML5 video.
+</video>
+<script>
+    var videoEl = document.querySelector('#v0');
+    videoEl.pause();
+
+    //chrome跑不了
+    //window.addEventListener('scroll', function (e) {
+    //    var currentTime = window.pageYOffset / 400;
+    //    console.log(currentTime);
+    //    videoEl.currentTime = currentTime;
+    //}, false);
+
+    window.onscroll = function () {
+        videoEl.currentTime = window.pageYOffset / 400;
+    };
+
+</script>
+
+</body>
+</html>
