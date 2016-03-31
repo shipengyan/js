@@ -58,16 +58,47 @@
       -ms-flex-pack: justify;
       justify-content: space-between;
     }
+
+    .module {
+      border: 1px solid #cccccc;
+      height: 300px;
+    }
   </style>
 </head>
 <body>
 
-<div class="flex flex-pack-justify">
-  <div>模块一</div>
-  <div>模块二</div>
-  <div>模块三</div>
-  <div>模块四</div>
+<div id="container" class="flex flex-pack-justify">
+  <div class="module">模块一</div>
+  <div class="module">模块二</div>
+  <div class="module">模块三</div>
+  <div class="module">模块四</div>
 </div>
+
+
+<button id="btn1" onclick="">横排</button>
+<button id="btn2" onclick="">竖排</button>
+<script>
+  var containerEl = $('#container'),
+    btn1 = $('#btn1'),
+    btn2 = $('#btn2');
+
+  btn1.addEventListener('click', function () {
+    var classList = containerEl.classList;
+    classList.remove('flex-v')
+    classList.add('flex');
+  });
+
+  btn2.addEventListener('click', function () {
+    var classList = containerEl.classList;
+    classList.remove('flex')
+    classList.add('flex-v');
+  });
+
+  function $(selector) {
+    return document.querySelector(selector);
+  }
+</script>
+
 
 </body>
 </html>
