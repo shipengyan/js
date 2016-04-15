@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>window.pageYOffset</title>
+</head>
+<body style="height: 2000px">
+<div style="height: 200.5px; width: 100%;background: red;" id="container"></div>
+
+<script>
+
+  var container = document.querySelector('#container')
+  window.addEventListener('scroll', function () {
+    console.log(window.pageYOffset);
+    //pageYOffset ,scrollY 始终是整形数值
+    console.log(container.getBoundingClientRect());
+  })
+
+</script>
+</body>
+</html>
