@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>No history</title>
+</head>
+<body>
+<a onclick="go(event)" href="javascript:void(0)">不产生历史记录</a>
+
+<script>
+  //  window.history.forward(1);
+  function go(e) {
+//    location.href='event.html'
+
+    //下面这种方式最好
+    e.preventDefault();
+    location.replace('event.html');
+  }
+
+</script>
+</body>
+</html>
