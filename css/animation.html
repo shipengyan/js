@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animation</title>
+  <link rel="stylesheet" href="animation.css">
+</head>
+<body>
+
+<!--滑动类-->
+向左滑动
+<div style="width:200px;height:200px;background:url(transition-bg.jpg);">
+  <a class="transition slide-left"
+     style="width:200px;height:200px;display:block;
+          background-image:url(transition-bg.jpg);"
+     href="#" target="_blank">
+  </a>
+</div>
+
+向右滑动
+<div style="width:200px;height:200px;background:url(transition-bg.jpg);">
+  <a class="transition slide-right"
+     style="width:200px;height:200px;display:block;
+          background-image:url(transition-bg.jpg);"
+     href="#" target="_blank">
+  </a>
+</div>
+
+向上滑动
+<div style="width:200px;height:200px;background:url(transition-bg.jpg);">
+  <a class="transition slide-up"
+     style="width:200px;height:200px;display:block;
+          background-image:url(transition-bg.jpg);"
+     href="#" target="_blank">
+  </a>
+</div>
+
+向下滑动
+<div style="width:200px;height:200px;background:url(transition-bg.jpg);">
+  <a class="transition slide-down"
+     style="width:200px;height:200px;display:block;
+          background-image:url(transition-bg.jpg);"
+     href="#" target="_blank">
+  </a>
+</div>
+
+<!--渐变蒙版类-->
+关灯特效
+<div class="masking-in" style="width:400px;height:400px;background:url(transition-bg.jpg);">
+  <a class="transition"
+     style="width:200px;height:200px;display:block;float:left;background:rgb(0,0,0);"
+     href="#" target="_blank">
+  </a>
+  <a class="transition"
+     style="width:200px;height:200px;display:block;float:left;background:rgb(0,0,0);"
+     href="#" target="_blank">
+  </a>
+  <a class="transition"
+     style="width:200px;height:200px;display:block;float:left;background:rgb(0,0,0);"
+     href="#" target="_blank">
+  </a>
+  <a class="transition"
+     style="width:200px;height:200px;display:block;float:left;background:rgb(0,0,0);"
+     href="#" target="_blank">
+  </a>
+  <div style="clear:both;"></div>
+</div>
+
+开灯特效
+<div class="masking-out" style="width:400px;height:400px;background:url(transition-bg.jpg);">
+  <a class="transition"
+     style="width:200px;height:200px;display:block;float:left;background:rgb(0,0,0);"
+     href="#" target="_blank">
+  </a>
+  <a class="transition"
+     style="width:200px;height:200px;display:block;float:left;background:rgb(0,0,0);"
+     href="#" target="_blank">
+  </a>
+  <a class="transition"
+     style="width:200px;height:200px;display:block;float:left;background:rgb(0,0,0);"
+     href="#" target="_blank">
+  </a>
+  <a class="transition"
+     style="width:200px;height:200px;display:block;float:left;background:rgb(0,0,0);"
+     href="#" target="_blank">
+  </a>
+  <div style="clear:both;"></div>
+</div>
+
+黑白特效
+<a class="transition grayscale"
+   style="width:400px;height:400px;display:block;background:url(transition-bg.jpg);"
+   href="#" target="_blank">
+</a>
+
+聚焦特效
+<a class="transition zoom-in"
+   style="width:200px;height:200px;display:block;overflow:hidden;background:url(transition-bg.jpg);"
+   href="#" target="_blank">
+  <img class="transition" src="transition-bg.jpg"/>
+</a>
+
+缩放特效
+<a class="transition zoom-out"
+   style="width:200px;height:200px;display:block;overflow:hidden;background:url(transition-bg.jpg);"
+   href="#" target="_blank">
+  <img class="transition" src="transition-bg.jpg"/>
+</a>
+
+</body>
+</html>
