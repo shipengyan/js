@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Title</title>
+  <style>
+    .img-wrapper {
+      overflow: scroll;
+    }
+
+    .img-wrapper img {
+      width: 300px;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="img-wrapper">
+  <img src="img/1@large.jpeg">
+</div>
+
+<script src="../frm/hammer.js"></script>
+<script>
+
+  var imgWrapperEl = $('.img-wrapper'), imgEl = $('.img-wrapper img');
+
+
+  var width = 300, height = 300;
+  var minWidth = 300, minHeight = 300;
+
+  var touchActions = ['auto', 'pan-y', 'pan-x', 'pan-x pan-y', 'none'];
+  var ham = new Hammer(imgWrapperEl, {
+    domEvents: true, //启用的话会影响性能
+    touchAction: 'auto'
+  });
+  ham.get('pinch').set({enable: true});
+  ham.get('swipe').set({direction: Hammer.DIRECTION_ALL});
+
+
+  // jquery  e.originalEvent.gesture
+  // 原生 e.gesture
+  imgWrapperEl.addEventListener('pinch', function (e) {
+    console.log("pinch");
+    if (width * e.gesture.scale >= minWidth) {
+
+      var w = width * e.gesture.scale, h = height * e.gesture.scale;
+      imgEl.style.cssText = 'width:' + w + 'px;height:' + h + 'px;';
+    }
+    console.log(e.gesture.scale);
+  });
+
+  imgWrapperEl.addEventListener('pinchend', function (e) {
+    console.log('pinchend');
+    if (width * e.gesture.scale >= minWidth) {
+      width = width * e.gesture.scale;
+      height = height * e.gesture.scale;
+      console.log(width, height);
+    }
+  });
+
+  function $(selector) {
+    return document.querySelector(selector);
+  }
+
+
+</script>
+
+</body>
+</html>
