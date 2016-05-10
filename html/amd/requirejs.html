@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
 <body>
 
-<script src="../frm/require.js"></script>
+<script src="../../frm/require.js"></script>
 <script>
 
-    //    define('main', ['./a', './b'], function (a, b) {
-    //        console.log(a);
-    //        console.log(b);
-    //    });
+  //    define('main', ['./a', './b'], function (a, b) {
+  //        console.log(a);
+  //        console.log(b);
+  //    });
 
-    define('a', function () {
-        console.log('a');
-    });
-    define(function (require, exports, module) {
-        //the require in here is a local require.
-//        require('a');
-    });
-    define('main', function () {
+  //    define('a', function () {
+  //        console.log('a');
+  //    });
+  //    define(function () {
+  ////        console.log('niming')
+  //        //the require in here is a local require.
+  //    });
+  define('main', ['./niming.js'], function () {
 //        require('b');
-        console.log('main');
+    console.log('main');
     });
-
+  //
     require(['main']);
 </script>
 </body>

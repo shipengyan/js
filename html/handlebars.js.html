@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Handlerbars.js</title>
+</head>
+<body>
+
+<div id="container"></div>
+<script src="../frm/handlebars.js"></script>
+
+<script type="text/template" id="template">
+  {{#if showA}}
+  <div>showA</div>
+  {{#if root.showB}}
+  <div>showB</div>
+  {{/if}}
+  {{/if}}
+</script>
+
+<script>
+  var template = Handlebars.compile(document.querySelector('#template').innerText);
+  var containerEl = document.querySelector('#container');
+  var html = template({showA: true, showB: true})
+  containerEl.innerHTML = html;
+</script>
+</body>
+</html>
