@@ -9,6 +9,8 @@
 <script src="../../frm/require.js"></script>
 <script>
 
+  define('a',[],'asdfaasdfassdf');
+
   //    define('main', ['./a', './b'], function (a, b) {
   //        console.log(a);
   //        console.log(b);
@@ -21,7 +23,8 @@
   ////        console.log('niming')
   //        //the require in here is a local require.
   //    });
-  define('main', ['./niming.js'], function () {
+  define('main', ['a'], function (a) {
+    console.log(a)
 //        require('b');
     console.log('main');
     });
